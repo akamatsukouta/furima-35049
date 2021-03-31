@@ -59,7 +59,7 @@ Things you may want to cover:
 
 
 
-## product テーブル(商品)
+## items テーブル(商品)
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
