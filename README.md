@@ -59,18 +59,18 @@ Things you may want to cover:
 
 
 
-## items テーブル(商品)
+## items  テーブル(商品)
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
 | name     | string | null: false   |
 | price     | integer | null: false   |
 | explanation| text | null: false   |
-| product_status＿id   | integer| null: false   |
-| Shipping charge_id  | integer | null: false    |
-| Shipping area_id| integer | null: false   |
-| Days to idea_id| integer | null: false   |
-| Category_id　　　| integer | null: false    |
+| product_status＿id   | integer| null: false  foreign_key: true  |
+| Shipping charge_id  | integer | null: false, foreign_key: true |
+| Shipping area_id| integer | null: false, foreign_key: true    |
+| Days to idea_id| integer | null: false, foreign_key: true   |
+| Category_id　　　| integer | null: false, foreign_key: true    |
 |user_id       | integer| null: false, foreign_key: true|
 
 ### Association
@@ -84,8 +84,8 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| user_id | integer | null: false    |
-| product_id| integer | null: false   |
+| user_id | integer | null: false, foreign_key: true     |
+| product_id| integer | null: false ,foreign_key: true   |
 
 ### Association
 
