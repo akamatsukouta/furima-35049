@@ -87,8 +87,9 @@ Things you may want to cover:
 | user_id | integer | null: false    |
 | product_id| integer | null: false   |
 
+### Association
 
-
+- has_many : users
 
 
 
