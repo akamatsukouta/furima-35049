@@ -27,16 +27,14 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| nickname  | string | NOT NULL    |
-| email    | string | NOT NULL    |
-| password | string | NOT NULL    |
-|user_image| string | NOT NULL    |
-|introduction| text   | NOT NULL    |
-|family_name | string | NOT NULL    |
-|family_name_kana   | string | NOT NULL    |
-|first_name  | string | NOT NULL    |
-|first_name_kana    | string | NOT NULL    |
-|birth_day   | date   | NOT NULL    |
+| nickname  | string | null: false    |
+| email    | string | null: false   |
+| encrypted_password | string | null: false   |
+|family_name | string | null: false   |
+|family_name_kana   | string | null: false   |
+|first_name  | string | null: false  |
+|first_name_kana    | string | null: false   |
+|birth_day   | date   | null: false   |
 
 ### Association
 - has_many : products
@@ -48,16 +46,16 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| user_id  |integer | NOT NULL, foreign_key: true |
-|family_name| string | NOT NULL    |
-|family_name_kana | string | NOT NULL    |
-|first_name | string | NOT NULL    |
-|first_name_kana  | text   | NOT NULL    |
-|post_code  | string | NOT NULL    |
-|prefecture | string | NOT NULL    |
-|city       | string | NOT NULL    |
-|address    | string | NOT NULL    |
-|building_name   | string | NOT NULL    |
+| user_id  |integer | null: false, foreign_key: true |
+|family_name| string | null: false   |
+|family_name_kana | string | null: false    |
+|first_name | string | null: false    |
+|first_name_kana  | text   | null: false    |
+|post_code  | string | null: false   |
+|prefecture | string | null: false    |
+|city       | string | null: false    |
+|address    | string | null: false    |
+|building_name   | string | null: false   |
 |phone_number    | string |             |
 
 ### Association
@@ -69,53 +67,41 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| name     | string | NOT NULL    |
-|price     | string | NOT NULL    |
-|explanation| string | NOT NULL    |
-|status    | string | NOT NULL    |
-|size      | string | NOT NULL    |
-|shipping_cost | string | NOT NULL    |
-|shipping_days | string | NOT NULL    |
-|prefecture_id | string | NOT NULL    |
-|judgment      | string | NOT NULL    |
-|category_id   | integer| NOT NULL, foreign_key: true|
-|brand_id      | integer| NOT NULL, foreign_key: true|
-|shipping_id   | integer| NOT NULL, foreign_key: true|
-|user_id       | integer| NOT NULL, foreign_key: true|
+| name     | string | null: false   |
+| price     | integer | null: false   |
+| explanation| text | null: false   |
+| product_status    | string | null: false   |
+| Shipping charges  | string | null: false    |
+| Shipping area| string | null: false   |
+| Days to idea| string | null: false   |
+| Category　　　| string | null: false    |
+|user_id       | integer| null: false, foreign_key: true|
 
 ### Association
 - belongs_to : user
-- belongs_to : category
+
 - belongs_to : brand
-- has_many : images
-
-
-## category テーブル
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     | string | NOT NULL    |
-
-### Association テーブル
-- has_many : products
 
 
 
-## image テーブル
+##　Purchase management(購入管理)
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| image    |string  | NOT NULL    |
-| product_id |integer| NOT NULL, foreign_key: true  |
+| purchase_id | string | null: false    |
+| purchase_date| string | null: false   |
+| buyer_id | string | null: false   |
+| quantity | string | null: false   |
 
-### Association
-- belongs_to :product
+###
+
 
 
 
 ## brand テーブル
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| name     |string  | NOT NULL    |
+| name     |string  | null: false   |
 
 ### Association
 - has_many : products
