@@ -39,6 +39,7 @@ Things you may want to cover:
 ### Association
 - has_many : products
 - belongs_to : destination
+- has_many : purchase managements
 
 
 
@@ -48,14 +49,15 @@ Things you may want to cover:
 | -------- | ------ | ----------- |
 | user_id  |integer | null: false, foreign_key: true |
 |post_code  | string | null: false   |
-|prefecture | string | null: false    |
+|prefecture_id | integer | null: false, foreign_key: true   |
 |city       | string | null: false    |
 |address    | string | null: false    |
-|building_name   | string | 　　　　　   |
+|building_name   | string |           |
 |phone_number    | string | null: false |
 
 ### Association
-- belongs_to : user
+- belongs_to : purchase management
+
 
 
 
@@ -67,29 +69,31 @@ Things you may want to cover:
 | price     | integer | null: false   |
 | explanation| text | null: false   |
 | product_status＿id   | integer| null: false  foreign_key: true  |
-| Shipping charge_id  | integer | null: false, foreign_key: true |
-| Shipping area_id| integer | null: false, foreign_key: true    |
-| Days to idea_id| integer | null: false, foreign_key: true   |
-| Category_id　　　| integer | null: false, foreign_key: true    |
+| shipping charge_id  | integer | null: false, foreign_key: true |
+| shipping area_id| integer | null: false, foreign_key: true    |
+| days to idea_id| integer | null: false, foreign_key: true   |
+| category_id    | integer | null: false, foreign_key: true    |
 |user_id       | integer| null: false, foreign_key: true|
 
 ### Association
 - belongs_to : user
-
+- belongs_to : purchase management
 - belongs_to : brand
 
 
 
-##　Purchase management(購入管理)
+## Purchase management(購入管理)
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| user_id | integer | null: false, foreign_key: true     |
-| product_id| integer | null: false ,foreign_key: true   |
+| purchase management_id | integer | null: false, foreign_key: true     |
+| item_id| integer | null: false ,foreign_key: true   |
 
 ### Association
 
-- has_many : users
+- belongs_to : user
+- belongs_to : item
+- belongs_to : destination
 
 
 
