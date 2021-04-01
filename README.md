@@ -85,7 +85,7 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| management_id | integer | null: false, foreign_key: true     |
+| purchase_management_id | integer | null: false, foreign_key:true| 
 | items_id| integer | null: false ,foreign_key: true   |
 
 ### Association
