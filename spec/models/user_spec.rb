@@ -8,6 +8,9 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
    context '新規登録できるとき' do
     it 'nicknameとemail、passwordとpassword_confirmationとfamily_name、first_nameとfamily_name_kana、first_name_kanaとbirth_dayが存在すれば登録できること' do
+      @user = User.new(nickname: 'ak', email: 'test1@gmail.com', password: '000000', password_confirmation: '000000',family_name: '赤松', first_name: '光太郎', family_name_kana: 'アカマツ', first_name_kana: 'コウタロウ', birth_day: '2000-6-7' )
+      @user.valid?
+  
     end
     it 'passwordとpassword_confirmationが6文字以上であれば登録できる' do
     end
@@ -70,6 +73,6 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
-
+   end
   end
 end
