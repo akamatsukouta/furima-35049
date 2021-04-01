@@ -37,7 +37,7 @@ Things you may want to cover:
 |birth_day   | date   | null: false   |
 
 ### Association
-- has_many : products
+- has_many : items
 - has_many : purchase＿managements
 
 
@@ -69,7 +69,7 @@ Things you may want to cover:
 | explanation| text | null: false   |
 | product_status＿id   | integer| null: false    |
 | shipping_charge_id  | integer | null: false |
-| shipping_area_id| integer | null: false  |
+| prefecture_id| integer | null: false  |
 | days_to_idea_id| integer | null: false |
 | category_id    | integer | null: false   |
 |user_id       | integer| null: false, foreign_key: true|
@@ -77,7 +77,6 @@ Things you may want to cover:
 ### Association
 - belongs_to : user
 - has_one : purchase_management
-- belongs_to : brand
 
 
 
@@ -85,7 +84,7 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| management_id | integer | null: false, foreign_key:true| 
+| user_id | integer | null: false, foreign_key:true| 
 | items_id| integer | null: false ,foreign_key: true   |
 
 ### Association
@@ -97,11 +96,4 @@ Things you may want to cover:
 
 
 
-## brand テーブル
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| name     |string  | null: false   |
-
-### Association
-- has_many : products
 
