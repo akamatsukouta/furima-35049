@@ -46,7 +46,7 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| user_id  |integer | null: false, foreign_key: true |
+| purchase_management_id |integer | null: false, foreign_key: true |
 |post_code  | string | null: false   |
 |prefecture_id | integer | null: false  |
 |city       | string | null: false    |
@@ -85,7 +85,7 @@ Things you may want to cover:
 
 | Column   | Type   | Options     |
 | -------- | ------ | ----------- |
-| purchase_management_id | integer | null: false, foreign_key:true| 
+| management_id | integer | null: false, foreign_key:true| 
 | items_id| integer | null: false ,foreign_key: true   |
 
 ### Association
