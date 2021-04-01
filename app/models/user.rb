@@ -11,7 +11,7 @@ class User < ApplicationRecord
    validates :nickname, presence: true
    validates :email, presence: true
  VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, length: {minmum: 6}
+   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, length: {minimum: 6}
      
    validates :family_name, presence: true
    validates :family_name_kana, presence: true
