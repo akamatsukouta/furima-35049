@@ -6,14 +6,13 @@ class User < ApplicationRecord
   
   #has_many :items
   #has_many :purchase_manegements       
-  
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i
  with_options presence: true do
 
    validates :nickname
    validates :email
 
-  with_options numericality: { with: VALID_PASSWORD_REGEX }, length: {minimum: 6} do
-   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i
+  with_options format: { with: VALID_PASSWORD_REGEX }, length: {minimum: 6} do
    validates :password
   end
 
@@ -25,7 +24,7 @@ class User < ApplicationRecord
    with_options format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/, message: 'に全角文字を使用してください' } do
     validates :family_name
     validates :first_name
-   do
+   end
 
    validates :birth_day
 
