@@ -7,25 +7,25 @@ class User < ApplicationRecord
   has_many :items
   has_many :purchase_manegements       
   
-  with_options presence: true do
+ with_options presence: true do
 
-   validates :nickname, presence: true
-   validates :email, presence: true
+   validates :nickname
+   validates :email
 
- VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i
-   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, length: {minimum: 6}
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i
+   validates :password, format: { with: VALID_PASSWORD_REGEX }, length: {minimum: 6}
 
- with_options presence: true, format: {with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: "全角カタカナのみで入力して下さい"} do       
-   validates :first_name_kana, presence: true
-   validates :family_name_kana, presence: true
- end
+     
+   validates :first_name_kana, format: {with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: "全角カタカナのみで入力して下さい"} 
+   validates :family_name_kana, format: {with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: "全角カタカナのみで入力して下さい"} 
+ 
   
- with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'に全角文字を使用してください' } do
-   validates :family_name, presence: true
-   validates :first_name, presence: true
- end
+ 
+   validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'に全角文字を使用してください' } 
+   validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'に全角文字を使用してください' } 
+ 
 
-   validates :birth_day, presence: true
-   
-end
+   validates :birth_day
+
+ end
 end
