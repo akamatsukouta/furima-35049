@@ -122,12 +122,12 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
-    it "family_name_kanaが全角カタカナ以外では登録できないこと" do
+    it "family_name_kanaが半角文字だと登録できないこと" do
       @user.family_name_kana = "あかまつ"
       @user.valid?
       expect(@user.errors.full_messages).to include("Family name kana 全角カタカナのみで入力して下さい")
     end
-    it "first_name_kanaが全角カタカナ以外では登録できないこと" do
+    it "first_name_kanaが半角文字だと登録できないこと" do
       @user.first_name_kana = "こうたろう"
       @user.valid?
       expect(@user.errors.full_messages).to include("First name kana 全角カタカナのみで入力して下さい")
