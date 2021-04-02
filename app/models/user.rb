@@ -5,8 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   #has_many :items
-  #has_many :purchase_manegements  
-   has_one_attached :image
+  #has_many :purchase_manegements       
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i
  with_options presence: true do
 
