@@ -7,19 +7,18 @@ class Item < ApplicationRecord
   belongs_to :shipping_charge
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :validatable
   
   has_one_attached :image
-  belongs_to :user   
-  has_one :purchase_management
+  belongs_to :user
+  # has_one :purchase_management
   
 
   VALID_PRICEL_HALF = /\A[0-9]+\z/
   with_options presence: true do
-    
+
     validates :name
-   
     validates :explanation 
     validates :product_status_id, numericality: { other_than: 1 }
     validates :shipping_charge_id, numericality: { other_than: 1 }
@@ -28,17 +27,9 @@ class Item < ApplicationRecord
     validates :category_id, numericality: { other_than: 1 }
     validates :user_id
 
-    with_options format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true, greater_than: 300, less_than: 10000000 } do
+    with_options format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 } do
       validates :price
     end
   end
- 
-  with_options presence: true do 
-   validates :category, :text
-   validates :days_to_ship, :text
-   validates :product_status, :text
-   validates :shipping_area, :text
-   validates :shipping_charge, :text
-  end
-   
+
 end
