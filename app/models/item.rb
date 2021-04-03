@@ -18,6 +18,7 @@ class Item < ApplicationRecord
   VALID_PRICEL_HALF = /\A[0-9]+\z/
   with_options presence: true do
 
+    validates :image
     validates :name
     validates :explanation 
     validates :product_status_id, numericality: { other_than: 1 }
@@ -25,7 +26,7 @@ class Item < ApplicationRecord
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :days_to_idea_id, numericality: { other_than: 1 }
     validates :category_id, numericality: { other_than: 1 }
-    validates :user_id
+    
 
     with_options format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 } do
       validates :price
