@@ -8,4 +8,8 @@ class Product_status < ActiveHash::Base
    { id: 6, product_status: '傷や汚れあり' },
    { id: 7, product_status: '全体的に状態が悪い' },
   ]
+
+   include ActiveHash::Associations
+   has_many :items
+
   end 

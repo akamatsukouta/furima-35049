@@ -18,4 +18,8 @@ class Shipping_area < ActiveHash::Base
     { id: 43, shipping_area: '熊本県' }, { id: 44, shipping_area: '大分県' }, { id: 45, shipping_area: '宮崎県' },
     { id: 46, shipping_area: '鹿児島県' }, { id: 47, shipping_area: '沖縄県' }
   ]
+
+  include ActiveHash::Associations
+  has_many :items
+
   end
