@@ -23,29 +23,29 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Explanation can't be blank")
      end
      it 'カテゴリーの情報がないときは出品できない' do
-      @item. category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
      end
      it '商品の情報がないときは出品できない' do
-      @item.product_status_id = ''
+      @item.product_status_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Product status can't be blank", "Product status is not a number")
+      expect(@item.errors.full_messages).to include("Product status must be other than 1")
      end
      it '配送料の負担についての情報がないときは出品できない' do
-      @item.shipping_charge_id = ''
+      @item.shipping_charge_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping charge can't be blank", "Shipping charge is not a number")
+      expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
      end
      it '発送元の地域についての情報がないときは出品できない' do
-      @item.prefecture_id = ''
+      @item.prefecture_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
      end
      it '発送までの日数についての情報がないときは出品できない' do
-      @item.days_to_idea_id = ''
+      @item.days_to_idea_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Days to idea can't be blank", "Days to idea is not a number")
+      expect(@item.errors.full_messages).to include("Days to idea must be other than 1")
      end
      it '販売価格についての情報がないときは出品できない' do
       @item.price = nil

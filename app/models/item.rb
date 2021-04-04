@@ -3,12 +3,11 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :days_to_ship
   belongs_to :product_status
-  belongs_to :shipping_area
+  belongs_to :prefecture
   belongs_to :shipping_charge
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :validatable
+  
   
   has_one_attached :image
   belongs_to :user
