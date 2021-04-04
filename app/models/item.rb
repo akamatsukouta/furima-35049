@@ -21,16 +21,19 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :explanation 
-    validates :product_status_id, numericality: { other_than: 1 }
-    validates :shipping_charge_id, numericality: { other_than: 1 }
-    validates :prefecture_id, numericality: { other_than: 1 }
-    validates :days_to_idea_id, numericality: { other_than: 1 }
-    validates :category_id, numericality: { other_than: 1 }
     
+    
+  end
+  with_options format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 } do
+    validates :price
+  end
 
-    with_options format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 } do
-      validates :price
-    end
+  with_options presence: true, numericality: { other_than: 1 } do
+   validates :product_status_id
+   validates :shipping_charge_id
+   validates :prefecture_id
+   validates :days_to_idea_id
+   validates :category_id
   end
 
 end
