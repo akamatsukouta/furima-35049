@@ -17,6 +17,11 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include("Image can't be blank")
      end
+     it '商品名が空の時登録できない' do
+      @item.name = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Name can't be blank")
+     end
      it '商品の説明がないときは出品できない' do
       @item.explanation = ''
       @item.valid?
@@ -48,9 +53,9 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Days to idea must be other than 1")
      end
      it '販売価格についての情報がないときは出品できない' do
-      @item.price = nil
+      @item.price = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is invalid", "Price is not a number")
+      expect(@item.errors.full_messages).to include("Price can't be blank", "Price is not a number")
      end
      it '販売価格が300円以下の場合は出品できない' do
       @item.price = 299
@@ -64,6 +69,16 @@ RSpec.describe Item, type: :model do
      end
      it '販売価格が半角数字じゃない場合は出品できない' do
       @item.price = '３００'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+     end
+     it '商品価格が半角英数字混合では登録できない' do
+      @item.price = '3２０'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+     end
+     it '商品価格が半角英字のみでは登録できない' do
+      @item.price = 'aaa'
       @item.valid?
       expect(@item.errors.full_messages).to include("Price is not a number")
      end

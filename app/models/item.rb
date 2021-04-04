@@ -14,17 +14,17 @@ class Item < ApplicationRecord
   # has_one :purchase_management
   
 
-  VALID_PRICEL_HALF = /\A[0-9]+\z/
+  
   with_options presence: true do
 
     validates :image
     validates :name
     validates :explanation 
     
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 } do
+      validates :price
+    end
     
-  end
-  with_options format: {with: VALID_PRICEL_HALF}, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000 } do
-    validates :price
   end
 
   with_options presence: true, numericality: { other_than: 1 } do
