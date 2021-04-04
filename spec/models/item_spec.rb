@@ -23,7 +23,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Explanation can't be blank")
      end
      it 'カテゴリーの情報がないときは出品できない' do
-      @item. category_id = 1
+      @item. category_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
      end
@@ -48,9 +48,9 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Days to idea can't be blank", "Days to idea is not a number")
      end
      it '販売価格についての情報がないときは出品できない' do
-      @item.price = ''
+      @item.price = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank", "Price is invalid", "Price is not a number")
+      expect(@item.errors.full_messages).to include("Price is invalid", "Price is not a number")
      end
      it '販売価格が300円以下の場合は出品できない' do
       @item.price = 299
