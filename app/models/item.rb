@@ -31,7 +31,7 @@ class Item < ApplicationRecord
    validates :product_status_id
    validates :shipping_charge_id
    validates :prefecture_id
-   validates :days_to_idea_id
+   validates :days_to_ship_id
    validates :category_id
   end
 
