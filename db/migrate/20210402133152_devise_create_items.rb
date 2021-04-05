@@ -12,6 +12,8 @@ class DeviseCreateItems < ActiveRecord::Migration[6.0]
       t.integer :days_to_idea_id,        null: false
       t.integer :category_id,            null: false
       t.integer :user_id,                null: false, foreign_key: true
+
+      t.timestamps null: false
     end
   end
 end
