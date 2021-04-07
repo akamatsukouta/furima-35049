@@ -1,15 +1,16 @@
 class PurchaseManagementsController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  before_action :move_to_index, only: [:index]
+
 
   def index
     @destination_purchase_management = DestinationPurchaseManagement.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
     @item = Item.find(params[:item_id])
     @destination_purchase_management = DestinationPurchaseManagement.new(destination_purchase_management_params)
     if @destination_purchase_management.valid?
-      # binding.pry
       pay_item
       @destination_purchase_management.save
       redirect_to root_path
@@ -34,9 +35,10 @@ class PurchaseManagementsController < ApplicationController
     )
   end
 
-  
-
-
-
-
+  def move_to_index
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id || @item.purchase_management.present?
+      redirect_to root_path
+    end
+  end
 end

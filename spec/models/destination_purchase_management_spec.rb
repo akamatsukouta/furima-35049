@@ -7,7 +7,7 @@ RSpec.describe DestinationPurchaseManagement, type: :model do
 
   describe '購入できる場合' do
     context '保存できるとき' do
-     it '全ての項目(user_id, item_id, purchase_management_id, post_code, prefecture_id, city, address, building_name, phone_number)が存在すれば購入できる' do
+     it '全ての項目(user_id, item_id, post_code, prefecture_id, city, address, building_name, phone_number, token)が存在すれば購入できる' do
        expect(@destination_purchase_management).to be_valid
      end
      it '電話番号が11桁いないの場合のみ保存できる' do
@@ -16,6 +16,9 @@ RSpec.describe DestinationPurchaseManagement, type: :model do
      end
      it '郵便番号にハイフンがある場合のみ保存できる' do
       @destination_purchase_management.post_code = '123-4567'
+      expect(@destination_purchase_management).to be_valid
+     end
+     it 'tokenがあれば保存できる' do
       expect(@destination_purchase_management).to be_valid
      end
     end

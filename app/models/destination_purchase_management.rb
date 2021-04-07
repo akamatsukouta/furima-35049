@@ -9,7 +9,9 @@ class DestinationPurchaseManagement
     validates :phone_number,  format: {with: /\A\d{10}\z|\A\d{11}\z/ , message: "is invalid."}
     validates :building_name
     validates :prefecture_id
+    validates :token
   end
+  
   def save
     purchase_management = PurchaseManagement.create(user_id: user_id, item_id: item_id)
     Destination.create(purchase_management_id: purchase_management.id, post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building_name: building_name, phone_number: phone_number)
