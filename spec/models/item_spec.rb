@@ -48,7 +48,7 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
      end
      it '発送までの日数についての情報がないときは出品できない' do
-      @item.days_to_idea_id = 1
+      @item.days_to_ship_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Days to idea must be other than 1")
      end
