@@ -1,6 +1,7 @@
 class PurchaseManagementsController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
-  before_action :move_to_index, only: [:index]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
+  before_action :set_item : [:create, :pay_item]
 
 
   def index
@@ -8,7 +9,6 @@ class PurchaseManagementsController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @destination_purchase_management = DestinationPurchaseManagement.new(destination_purchase_management_params)
     if @destination_purchase_management.valid?
       pay_item
@@ -26,13 +26,16 @@ class PurchaseManagementsController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
     Payjp.api_key = "sk_test_c590658db8f1ebdad1717f5c"
     Payjp::Charge.create(
       amount: @item.price,
       card: destination_purchase_management_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def move_to_index

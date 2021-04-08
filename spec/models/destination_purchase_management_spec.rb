@@ -21,6 +21,14 @@ RSpec.describe DestinationPurchaseManagement, type: :model do
      it 'tokenがあれば保存できる' do
       expect(@destination_purchase_management).to be_valid
      end
+     it '電話番号はハイフンがなくても保存できる' do
+     @destination_purchase_management.phone_number = '01207772656'
+     expect(@destination_purchase_management).to be_valid
+     end
+     it '建物名がなくても保存できること' do
+      @destination_purchase_management.building_name = nil
+      expect(@destination_purchase_management).to be_valid
+    end
     end
     context '保存できないとき' do
       it '郵便番号が空欄の場合保存できない' do
@@ -38,6 +46,11 @@ RSpec.describe DestinationPurchaseManagement, type: :model do
         @destination_purchase_management.valid?
         expect(@destination_purchase_management.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it '都道府県を選択していないと保存できない' do
+        @destination_purchase_management.prefecture_id = nil
+        @destination_purchase_management.valid?
+        expect(@destination_purchase_management.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
+      end
       it '市区町村が空欄の場合保存できない' do
         @destination_purchase_management.city = ''
         @destination_purchase_management.valid?
@@ -53,8 +66,13 @@ RSpec.describe DestinationPurchaseManagement, type: :model do
         @destination_purchase_management.valid?
         expect(@destination_purchase_management.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid.")
       end
-      it '電話番号が11桁以上の場合保存できない' do
+      it '電話番号が12桁以上の場合保存できない' do
         @destination_purchase_management.phone_number = '012077726567'
+        @destination_purchase_management.valid?
+        expect(@destination_purchase_management.errors.full_messages).to include("Phone number is invalid.")
+      end
+      it '電話番号が半角数字じゃない場合保存できない' do
+        @destination_purchase_management.phone_number = '０１２０７７７２６５６'
         @destination_purchase_management.valid?
         expect(@destination_purchase_management.errors.full_messages).to include("Phone number is invalid.")
       end
@@ -63,6 +81,17 @@ RSpec.describe DestinationPurchaseManagement, type: :model do
         @destination_purchase_management.valid?
         expect(@destination_purchase_management.errors.full_messages).to include("Token can't be blank")
       end
+      it 'user_idが空の場合は保存できない' do
+        @destination_purchase_management.user_id = ''
+        @destination_purchase_management.valid?
+        expect(@destination_purchase_management.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idがからの場合は保存できない' do
+        @destination_purchase_management.item_id = ''
+        @destination_purchase_management.valid?
+        expect(@destination_purchase_management.errors.full_messages).to include("Item can't be blank")
+      end
+
     end
   end
 end
