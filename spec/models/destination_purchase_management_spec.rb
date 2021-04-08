@@ -2,12 +2,15 @@ require 'rails_helper'
 
 RSpec.describe DestinationPurchaseManagement, type: :model do
   before do
-    @destination_purchase_management = FactoryBot.build(:destination_purchase_management)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @destination_purchase_management = FactoryBot.build(:destination_purchase_management, user_id: user.id, item_id: item.id)
+    sleep(1)
   end
 
   describe '購入できる場合' do
     context '保存できるとき' do
-     it '全ての項目(user_id, item_id, post_code, prefecture_id, city, address, building_name, phone_number, token)が存在すれば購入できる' do
+     it '全ての項目(post_code, prefecture_id, city, address, building_name, phone_number, token)が存在すれば購入できる' do
        expect(@destination_purchase_management).to be_valid
      end
      it '電話番号が11桁いないの場合のみ保存できる' do

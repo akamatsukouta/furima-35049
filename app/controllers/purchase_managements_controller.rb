@@ -1,7 +1,7 @@
 class PurchaseManagementsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
-  before_action :set_item : [:create, :pay_item]
+  before_action :set_item, only: [:create, :pay_item]
 
 
   def index
@@ -26,7 +26,7 @@ class PurchaseManagementsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_c590658db8f1ebdad1717f5c"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
       card: destination_purchase_management_params[:token],
