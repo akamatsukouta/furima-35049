@@ -50,9 +50,9 @@ RSpec.describe DestinationPurchaseManagement, type: :model do
         expect(@destination_purchase_management.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '都道府県を選択していないと保存できない' do
-        @destination_purchase_management.prefecture_id = nil
+        @destination_purchase_management.prefecture_id = 1
         @destination_purchase_management.valid?
-        expect(@destination_purchase_management.errors.full_messages).to include("Prefecture can't be blank", "Prefecture is not a number")
+        expect(@destination_purchase_management.errors.full_messages).to include("Prefecture must be other than 1")
       end
       it '市区町村が空欄の場合保存できない' do
         @destination_purchase_management.city = ''
